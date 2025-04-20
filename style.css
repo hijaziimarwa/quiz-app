@@ -62,12 +62,6 @@
   color: white;
   margin-top: 20px;
 }
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  margin-top: 20px;
-}
 
   .home-box h2 {
     font-size: 30px;
@@ -179,3 +173,7 @@
 .next-button:hover {
     background-color: #45a049;
 }
+@media (max-width: 768px) {
+  .box, .home-box, .quiz-box {
+    width: 90%; /* <--- RED EDIT */
+  }}
