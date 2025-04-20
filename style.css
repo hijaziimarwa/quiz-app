@@ -4,8 +4,8 @@
 }
 
 .container,.home-container,.quiz-container {
-  /* background-image: url('/images/quiz-background.png'); */
-  background-color: red;
+  background-image: url('/images/quiz-background.png');
+  /* background-color: red; */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
