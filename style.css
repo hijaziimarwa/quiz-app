@@ -2,21 +2,9 @@
   margin: 0;
   padding: 0;
 }
-body{
-    background-image: url('./images/quiz-background.png');
-    background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  width: 100%;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-}
 
-/* .container,.home-container,.quiz-container {
+.container,.home-container,.quiz-container {
   background-image: url('./images/quiz-background.png');
 
   background-repeat: no-repeat;
@@ -28,7 +16,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-} */
+}
 
 .box,.home-box,.quiz-box {
   background-color: transparent;
