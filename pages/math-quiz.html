@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Math quiz</title>
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
     <div class="quiz-container">
-        <div class="quiz-box">
-            <h2>Test your math skills !</h2>
-            <!-- <p>Answer the following questions:</p> -->
-        <div class="question-box">
-            <p class="question-text">1. What is 2 + 2?</p>
-            <div class="options">
-                <input type="radio"  name="q1" value="3">
-                <label for="q1">3</label><br>
-                <input type="radio"  name="q1" value="4">
-                <label for="q1">4</label><br>
-                <input type="radio"  name="q1" value="5">
-                <label for="q1">5</label><br>
+      <div class="quiz-box">
+        <h2>Test your math skills !</h2>
+        <div class="question-box" id="question-box">
+          <p class="question-text" id="question-text"></p>
+        </div>
+        <div class="answer-buttons" id="answer-buttons">
 
-            </div>
+         
         </div>
-            <button class="next button">Next</button>
-            <button class="submit button">Submit</button>
-        </div>
- 
-                
-        </div>
-</body>
+        <button class="next-button" id="next-button">Next</button>
+
+
+      </div>
+    </div>
+    <script src="../main.js"></script>
+  </body>
 </html>
