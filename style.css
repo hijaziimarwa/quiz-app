@@ -129,11 +129,6 @@
     color:  white;
   }
   .question-text{
-    
-/*        
-        border: none;
-        padding-left: 20px;
-        margin-bottom: 20px; */
         color: white;
         text-align: center;
       }
@@ -156,7 +151,6 @@
     color: white;
     text-align: center;
     cursor: pointer;
-    /* transition: background-color 0.3s ease, color 0.3s ease; */
   }
   .option:hover{
     background-color: white;
@@ -172,6 +166,14 @@
     font-size: 18px;
     cursor: pointer;
     margin-bottom: 20px;
+    position: absolute;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    /* position: absoute;  */
+    left: 50%; 
+    transform: translateX(-50%); 
+    /* display: block; */
     /* display: none; */
 }
 .next-button:hover {
