@@ -18,7 +18,7 @@
     }
     
     else {
-      alert("Email أو Password غير صحيح، حاول مجددًا.");
+      alert("Email and password not found. Please try again !");
     }
   });
   
