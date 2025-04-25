@@ -11,10 +11,12 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
 
   if (email === 'admin@quiz.com' && password === 'admin123') {
+  
     window.location.href = '../pages/dashboard.html';
   }
 
   else if (user) {
+  localStorage.setItem('loggedInUser', JSON.stringify(user));
     window.location.href = '../pages/home.html';
   } else {
     alert('Email and password not found. Please try again!');
