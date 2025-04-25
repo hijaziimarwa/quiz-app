@@ -130,6 +130,19 @@ function showScore() {
       nextButton.textContent = 'Logout';
       nextButton.onclick = () => {
         window.location.href = '../index.html';
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+  
+        users = users.map(u => {
+          if (u.email === loggedInUser.email) {
+            return { ...u, score: score, chosenQuiz: 'Math' };  
+          }
+          return u;
+        });
+  
+       
+        localStorage.setItem('users', JSON.stringify(users));
+        
       };
     } else {
       questionText.textContent += 'Better luck next time.. Press below if you want to restart the quiz!';
