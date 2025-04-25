@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       usernameElement.textContent = ` ${user.username}`;
       emailElement.textContent = ` ${user.email}`;
       scoreElement.textContent = `${user.score}`;
-      chosenQuizElement.textContent = ` ${user.chosenQuiz || 'Not attempted yet'}`;
+      chosenQuizElement.textContent = ` ${user.chosenQuiz}`;
     }
   });
   
