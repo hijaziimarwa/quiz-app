@@ -44,30 +44,39 @@ const questions = [
 let currentQuestionIndex = 0;
 
 const questionText = document.getElementById('question-text');
-const answerButtons = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-button');
+const logoutButton = document.getElementById('logout-button');
+const restartButton = document.getElementById('restart-button');
+const answerButtons = [
+  document.getElementById('answer1'),
+  document.getElementById('answer2'),
+  document.getElementById('answer3'),
+];
 
 function showQuestion() {
   resetState();
 
-  const questionText = document.getElementById('question-text');
-  const answerButtons = document.getElementById('answer-buttons');
-
   const currentQuestion = questions[currentQuestionIndex];
   questionText.textContent = currentQuestion.question;
 
-  currentQuestion.answers.forEach((answer) => {
-    const button = document.createElement('button');
-    button.textContent = answer.text;
-    button.classList.add('option');
-    button.dataset.correct = answer.correct;
-    button.addEventListener('click', selectAnswer);
-    answerButtons.appendChild(button);
-  });
-}
+  for (let i = 0; i < currentQuestion.answers.length; i++) {
+    const answer = currentQuestion.answers[i];
+    const button = answerButtons[i];
 
+    button.textContent = answer.text;
+    button.dataset.correct = answer.correct;
+  }
+ 
+  
+}
+answerButtons.forEach((button) => {
+  button.addEventListener('click', selectAnswer);
+});
 function resetState() {
-  const answerButtons = document.getElementById('answer-buttons');
-  answerButtons.innerHTML = '';
+  answerButtons.forEach((btn) => {
+    btn.disabled = false;
+    btn.classList.remove('correct', 'incorrect');
+  });
 }
 
 let score = 0;
@@ -77,43 +86,63 @@ function selectAnswer(e) {
   const isCorrect = selectedButton.dataset.correct === 'true';
 
   if (isCorrect) {
-    selectedButton.style.backgroundColor = 'green';
+    selectedButton.classList.add('correct');
     score++;
   } else {
-    selectedButton.style.backgroundColor = 'red';
+    selectedButton.classList.add('incorrect');
   }
 
-  const answerButtons = document.getElementById('answer-buttons');
-  Array.from(answerButtons.children).forEach((button) => {
-    if (button.dataset.correct === 'true') {
-      button.style.backgroundColor = 'green';
-    }
+  answerButtons.forEach((button) => {
     button.disabled = true;
+    if (button.dataset.correct === 'true') {
+      button.classList.add('correct');
+    }
   });
-
-  document.getElementById('next-button').style.display = 'block';
 }
-
-const nextButton = document.getElementById('next-button');
 
 nextButton.addEventListener('click', () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     showQuestion();
-    nextButton.style.display = 'none';
   } else {
     showScore();
   }
 });
 
+
+function handleNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      showScore();
+    }
+  }
+  
 function showScore() {
-  const questionText = document.getElementById('question-text');
-  const answerButtons = document.getElementById('answer-buttons');
-  const nextButton = document.getElementById('next-button');
-
-  questionText.textContent = `🎉 Quiz Finished! 🎉 You got ${score} out of ${questions.length}`;
-  answerButtons.innerHTML = '';
-  nextButton.style.display = 'none';
-}
-
+    questionText.textContent = ` Quiz Finished ! `;
+    answerButtons.forEach((btn) => {
+      btn.classList.add('hide');
+    });
+  
+    if (score >= questions.length / 2) {
+      questionText.textContent += `Congratulations! You passed the quiz by score ${score} out of ${questions.length}.!`;
+      nextButton.textContent = 'Logout';
+      nextButton.onclick = () => {
+        window.location.href = '../index.html';
+      };
+    } else {
+      questionText.textContent += 'Better luck next time.. Press below if you want to restart the quiz!';
+      nextButton.textContent = 'Restart';
+      nextButton.onclick = () => {
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+        answerButtons.forEach((btn) => btn.classList.remove('hide'));
+        nextButton.textContent = 'Next';
+        nextButton.onclick = handleNextQuestion;
+      };
+    }
+  }
+  
 showQuestion();
