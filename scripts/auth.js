@@ -9,10 +9,10 @@ document.querySelector('form').addEventListener('submit', function (e) {
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (email === 'admin@quiz.com' && password === 'admin123') {
-    window.location.href = '/quiz-app/scripts/dashboard.html';
+    window.location.href = '/quiz-app/pages/dashboard.html';
   } else if (user) {
     localStorage.setItem('loggedInUser', JSON.stringify(user));
-    window.location.href = '/quiz-app/scripts/home.html';
+    window.location.href = '/quiz-app/pages/home.html';
   } else {
     alert('Email and password not found. Please try again!');
   }
