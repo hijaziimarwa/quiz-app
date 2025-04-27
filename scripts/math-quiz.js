@@ -45,8 +45,7 @@ let currentQuestionIndex = 0;
 
 const questionText = document.getElementById('question-text');
 const nextButton = document.getElementById('next-button');
-const logoutButton = document.getElementById('logout-button');
-const restartButton = document.getElementById('restart-button');
+
 const answerButtons = [
   document.getElementById('answer1'),
   document.getElementById('answer2'),
@@ -109,15 +108,6 @@ nextButton.addEventListener('click', () => {
   }
 });
 
-
-function handleNextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      showQuestion();
-    } else {
-      showScore();
-    }
-  }
   
 function showScore() {
     questionText.textContent = ` Quiz Finished ! `;
@@ -146,14 +136,22 @@ function showScore() {
       };
     } else {
       questionText.textContent += 'Better luck next time.. Press below if you want to restart the quiz!';
-      nextButton.textContent = 'Restart';
+      nextButton.textContent = 'Logout';
       nextButton.onclick = () => {
-        currentQuestionIndex = 0;
-        score = 0;
-        showQuestion();
-        answerButtons.forEach((btn) => btn.classList.remove('hide'));
-        nextButton.textContent = 'Next';
-        nextButton.onclick = handleNextQuestion;
+        window.location.href = '../index.html';
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+  
+        users = users.map(u => {
+          if (u.email === loggedInUser.email) {
+            return { ...u, score: score, chosenQuiz: 'Math' };  
+          }
+          return u;
+        });
+  
+       
+        localStorage.setItem('users', JSON.stringify(users));
+        
       };
     }
   }
