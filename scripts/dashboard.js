@@ -1,25 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const isAdmin = localStorage.getItem('isAdmin');
+  
 
-    const isAdmin = localStorage.getItem('isAdmin');
-  
-   
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const users = JSON.parse(localStorage.getItem('users')) || [];
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+  const dashboardTableBody = document.querySelector('table.score-table tbody');
+
+
   
-    const user = users.find(u => u.email === loggedInUser.email);
-  
-    if (user) {
-      
-      const emailElement = document.getElementById('email');
-      const usernameElement = document.getElementById('name');
-      const scoreElement = document.getElementById('quiz-score');
-      const chosenQuizElement = document.getElementById('quiz-name');
-  
-      usernameElement.textContent = ` ${user.username}`;
-      emailElement.textContent = ` ${user.email}`;
-      scoreElement.textContent = `${user.score}`;
-      chosenQuizElement.textContent = ` ${user.chosenQuiz}`;
-    }
+  users.forEach((user) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${user.username}</td>
+      <td>${user.email}</td>
+      <td>${user.chosenQuiz }</td>
+      <td>${user.score}</td>
+    `;
+    dashboardTableBody.appendChild(row);
   });
-  
+});
